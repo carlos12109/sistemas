@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Comedor Universitario UNAP</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <img src="logo.png" alt="Logo UNAP" class="logo">
+        <h1>Comedor universitario UNAP</h1>
+    </header>
+
+    <!-- CONTENIDO CENTRAL -->
+    <div class="container">
+
+        <!-- PANTALLA DE LOGIN -->
+        <main id="loginScreen">
+            <h2>Gestión de reportes</h2>
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena">
+            <button onclick="iniciarSesion()">Iniciar Sesión</button>
+        </main>
+
+        <!-- MENÚ PRINCIPAL -->
+        <main id="menuScreen" class="hidden">
+            <div class="menu-botones">
+                <button onclick="mostrarAgregarNuevo()">Agregar nuevo</button>
+                <button onclick="mostrarModificarUsuario()">Modificar usuario</button>
+                <button onclick="realizarReporte()">Realizar reporte</button>
+                <button onclick="cerrarSesion()">CERRAR SESIÓN</button>
+            </div>
+        </main>
+
+        <!-- FORMULARIO AGREGAR NUEVO -->
+        <main id="agregarNuevoScreen" class="hidden">
+            <h2>Agregar nuevo</h2>
+            <div class="form-grid">
+                <div class="form-left">
+                    <label>NOMBRES:<input type="text"></label>
+                    <label>DNI:<input type="text"></label>
+                    <label>CÓDIGO:<input type="text"></label>
+                    <label>APELLIDOS:<input type="text"></label>
+                    <label>FACULTAD:<input type="text"></label>
+                    <label>ESCUELA PROFESIONAL:<input type="text"></label>
+                    <label>GÉNERO:<input type="text"></label>
+                    <label>EDAD:<input type="number"></label>
+                    <label>CORREO:<input type="email"></label>
+                    <label>NÚMERO DE CELULAR:<input type="tel"></label>
+                </div>
+                <div class="form-right">
+                    <div class="foto-placeholder">Foto</div>
+                    <button>AGREGAR FOTO</button>
+                </div>
+            </div>
+            <button>AGREGAR</button>
+            <button onclick="volverAlMenu()">Cancelar y salir</button>
+        </main>
+
+        <!-- FORMULARIO MODIFICAR USUARIO -->
+        <main id="modificarUsuarioScreen" class="hidden">
+            <div class="search-bar">
+                <label>Buscar: <input type="text" placeholder="Código o DNI"></label>
+                <button>AGREGAR NUEVO</button>
+            </div>
+            <div class="user-card">
+                <div class="user-info">
+                    <strong>VIDMAN RUIS ROQUE MAMANI</strong><br>
+                    FACULTAD: ING. ESTADÍSTICA E INFORMÁTICA<br>
+                    ESCUELA PROFESIONAL: INGENIERÍA ESTADÍSTICA E INFORMÁTICA<br>
+                    SEXO: MASCULINO<br>
+                    EDAD: 23<br>
+                    CORREO: vidmanroque@gmail.com<br>
+                    TELÉFONO: +51951896510
+                </div>
+                <div class="user-side">
+                    <div class="foto-placeholder">Foto</div>
+                    <p>DNI: 75609218<br>CÓDIGO: 75609218</p>
+                </div>
+            </div>
+            <div class="modificar-botones">
+                <button>Modificar</button>
+                <button>Eliminar</button>
+                <button>Actualizar</button>
+                <button onclick="volverAlMenu()">SALIR</button>
+            </div>
+        </main>
+        <!-- REALIZAR REPORTE -->
+        <main id="reporteScreen" class="hidden">
+            <h2>Seleccionar rango de fecha:</h2>
+            <input type="date" id="fechaInicio"> a
+            <input type="date" id="fechaFin">
+            <div class="reporte-botones">
+                <button onclick="visualizarReporte()">Visualizar</button>
+                <button onclick="exportarReporte()">Exportar</button>
+            </div>
+            <button onclick="salirDeReporte()">SALIR</button>
+        </main>
+        <!-- PANTALLA: VISUALIZACIÓN DE REPORTE -->
+        <main id="visualizarReporteScreen" class="hidden">
+            <div class="search-bar">
+                <input type="text" placeholder="DNI o CÓDIGO">
+                <button>Buscar</button>
+            </div>
+
+            <table class="reporte-tabla">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Actividad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-06-01</td>
+                        <td>SP001</td>
+                        <td>Acme Corporation</td>
+                        <td>Shipped</td>
+                        <td>$2500.00</td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-02</td>
+                        <td>SP002</td>
+                        <td>Bravo Solutions</td>
+                        <td>Pending</td>
+                        <td>$1200.00</td>
+                    </tr>
+                    <tr>
+                        <td>2024-06-02</td>
+                        <td>SP003</td>
+                        <td>Charlie Workshop</td>
+                        <td>Cancelled</td>
+                        <td>$300.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="reporte-botones">
+                <button onclick="volverAlReporte()">Guardar</button>
+                <button onclick="mostrarExportacion()">Exportar</button>
+                <button onclick="volverAlReporte()">SALIR</button>
+            </div>
+        </main>
+
+        <!-- EXPORTACIÓN DE REPORTE -->
+        <main id="exportarReporteScreen" class="hidden">
+            <h2>Opciones de Exportación</h2>
+            <div class="export-icons">
+                <button>📄 Exportar a PDF</button>
+                <button>📊 Exportar a EXCEL</button>
+                <button>⬇️ Descargar</button>
+            </div>
+            <div class="reporte-botones">
+                <button onclick="visualizarReporte()">Visualizar</button>
+                <button onclick="exportarReporte()">Exportar</button> <!-- este botón activa imagen 2 -->
+                <button onclick="salirDeReporte()">Salir</button>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
